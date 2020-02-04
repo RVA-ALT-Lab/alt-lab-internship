@@ -88,8 +88,59 @@ function internship_update_post_content( $entry, $form ) {
         'end_date' =>   $end_date,
     );
     update_field( 'field_5e344533767ed', $dates, $post_id );//start and end date group
-	
 
     $i = wp_update_post( $post_id );
  
 }
+
+
+//internship reviews
+
+function internship_get_reviews(){
+	 global $post;
+		$search_criteria = array(
+	    'status'        => 'active',
+	    'field_filters' => array(
+	        array(
+	            'key'   => '2',
+	            'value' => $post->ID,
+	        )
+	    )
+	);
+	$entries = GFAPI::get_entries( 3, $search_criteria );
+	if ($entries){
+		$html = '';
+		$all_ratings = array();
+		foreach ($entries as $key => $entry) {
+			$rating = $entry[3];
+			$comment = $entry[4];
+		    array_push($all_ratings, $rating);	
+
+			
+			$html .= '<li>' . star_maker($rating) . '<div class="comment">' . $comment .'</div></li>';
+		}
+		$average = array_sum($all_ratings) / count($all_ratings);
+		return round($average) . ' average rating <ul>' . $html . '</ul>';
+		
+	} else {
+		return 'No reviews of this internship yet.';
+	}
+}
+
+
+function star_maker($number){
+	if ($number == 1){
+		return '⭐';
+	} 
+	if ($number == 2){
+		return '⭐⭐';
+	}
+	if ($number == 3){
+		return '⭐⭐⭐';
+	}
+	if ($number == 4){
+		return '⭐⭐⭐⭐';
+	}
+}
+
+	

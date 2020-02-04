@@ -83,16 +83,21 @@ i {
 	line-height: 1.4;
 }
 
+.intern-apply {
+	margin-top: 50px;
+}
+
 #intern_apply {
 	background: #fff;
     padding: 40px;
-    margin: 20px 0;
+    margin: 40px 0;
     box-shadow: 8px 8px $primary;
     transition: all .3s;
     border: 1px solid $primary;
 }
 
-#gform_submit_button_2, .btn-apply {
+#gform_submit_button_2, .btn-apply, #gform_submit_button_3 {
+	font-family: 'Open Sans Condensed',sans-serif;
 	display: block;
 	width: 300px;
 	margin: 20px auto;
@@ -100,7 +105,7 @@ i {
 	font-size: 1.2em;
 	background-color: $primary;
 	color: #fff;
-	font-weight: 400;
+	font-weight: 700;
 	padding: 10px;
 	border-radius: 7px;
 }

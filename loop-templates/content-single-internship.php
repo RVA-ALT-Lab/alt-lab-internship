@@ -45,10 +45,28 @@ defined( 'ABSPATH' ) || exit;
 			    Apply
 			  </button>
 			
-			<div class="collapse" id="intern_apply">
-			  <?php echo do_shortcode('[gravityform id="2" title="false" description="false"]');?>
+			<div class="collapse" id="intern_apply">				
+			  <?php 
+			  	$gform_text = '[gravityform id="2" title="false" description="false" field_values="company_email=' . internship_get_company_email() . '"]';
+			  	echo do_shortcode($gform_text);?>
 			</div>
 		</div>
+		<?php 
+			$user = wp_get_current_user();
+			if(in_array( 'student', $user->roles ) || current_user_can( 'manage_options' )) : ?>
+			<div class="reviews">
+				<div class="row">					
+					<div class="review-list col-md-12">
+						<h2>Reviews</h2>
+						<?php echo internship_get_reviews();?>
+					</div>
+					<div class="review-form col-md-12">
+						<h2>Submit a Review</h2>
+						<?php echo do_shortcode('[gravityform id="3" title="false" description="false"]'); ?>
+					</div>
+				</div>
+			</div>
+		<?php endif;?>
 
 		<?php
 		wp_link_pages(

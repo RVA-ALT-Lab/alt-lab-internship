@@ -17,6 +17,11 @@ function internship_get_company(){
     return $company;
 }
 
+function internship_get_company_email(){
+    $email = get_field('contact_email');
+    return $email;
+}
+
 function internship_get_compensation(){
     $compensation = get_field('compensation');
     return $compensation;
