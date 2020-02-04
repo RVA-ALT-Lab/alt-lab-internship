@@ -24,9 +24,18 @@ function internship_get_compensation(){
 
 function internship_get_location(){
     //print("<pre>".print_r(get_field('location'),true)."</pre>");
-    $location = get_field('location')['markers'][0]['default_label'];
-    $clean = str_replace("United States of America","",$location);
-    return $clean;
+    $location = get_field('address');
+    if($location){
+        $street_one = $location['street_1'];
+        if($location['street_2']){
+            $street_one = $street_one . ' ' . $location['street_2'];
+        }
+        $city = $location['city'];
+        $state = $location['state'];
+        $zip = $location['zip_code'];
+        return $street_one . ', ' . $city . ' ' . $state . ' ' . $zip;
+    }
+    
 }
 
 function internship_get_dates(){
