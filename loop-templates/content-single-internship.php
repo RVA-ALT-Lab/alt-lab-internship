@@ -14,7 +14,6 @@ defined( 'ABSPATH' ) || exit;
 	<header class="entry-header">
 
 		<?php the_title( '<h1 class="entry-title">', '</h1>' ); ?>
-
 		<div class="internship-meta">
 			<div class="company internship-meta-double">
 				<div class="internship-chunk">

@@ -46,3 +46,51 @@ if ( ! function_exists('write_log')) {
 }
 
   //print("<pre>".print_r($a,true)."</pre>");
+
+//GRAVITY FORMS PIECES
+
+add_action( 'gform_after_submission_1', 'internship_update_post_content', 10, 2 );
+
+function internship_update_post_content( $entry, $form ) {
+    //getting post
+    $post_id = get_post( $entry['post_id'] );
+    $company = rgar( $entry, '1' );
+    $compensation = rgar( $entry, '7' );
+    $contact_email = rgar($entry, '2');
+
+    update_field('field_5e34451b767eb', $company, $post_id);//company name
+    update_field('field_5e3447c544472', $compensation, $post_id);//compensation
+    update_field('field_5e3989d11d4c6', $contact_email, $post_id);//compensation
+
+    $street = rgar( $entry, '4.1' );
+    if (rgar( $entry, '4.2' )){
+    	$street = $street . ' ' . rgar( $entry, '4.2' );
+    }
+    $city = rgar( $entry, '4.3' );
+    $state = rgar( $entry, '4.4' );
+    $zip = rgar( $entry, '4.5' );    
+    $country = rgar( $entry, '4.6' ); 
+    $location = $street . ', ' . $city . ' ' . $zip . ', ' . $state . ' ' . $country;   
+
+    
+    $start_date = rgar( $entry, '8' );
+    $end_date = rgar( $entry, '9' );
+    write_log($location);
+    $address = array(
+    	'address' => $location,
+    );
+
+    $work = update_field('field_5e344524767ec', $address, $post_id);//location
+    write_log($work);
+    
+    //DATES GROUP
+    $dates = array(
+        'start_date'    =>   $start_date,
+        'end_date' =>   $end_date,
+    );
+    update_field( 'field_5e344533767ed', $dates, $post_id );//start and end date group
+	
+
+    $i = wp_update_post( $post_id );
+ 
+}
