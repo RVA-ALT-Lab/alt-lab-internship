@@ -22,30 +22,6 @@
             "maxlength": ""
         },
         {
-            "center_lat": 53.5507112,
-            "center_lng": 10.0006485,
-            "zoom": 12,
-            "key": "field_5e344524767ec",
-            "label": "Location",
-            "name": "location",
-            "type": "open_street_map",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "return_format": "raw",
-            "layers": [
-                "OpenStreetMap"
-            ],
-            "allow_map_layers": 1,
-            "height": 400,
-            "max_markers": ""
-        },
-        {
             "key": "field_5e344533767ed",
             "label": "Offering Dates",
             "name": "offering_dates",
@@ -200,7 +176,7 @@
                     "required": 0,
                     "conditional_logic": 0,
                     "wrapper": {
-                        "width": "",
+                        "width": "30",
                         "class": "",
                         "id": ""
                     },
@@ -219,7 +195,7 @@
                     "required": 0,
                     "conditional_logic": 0,
                     "wrapper": {
-                        "width": "",
+                        "width": "30",
                         "class": "",
                         "id": ""
                     },
@@ -300,7 +276,7 @@
                     "required": 0,
                     "conditional_logic": 0,
                     "wrapper": {
-                        "width": "",
+                        "width": "30",
                         "class": "",
                         "id": ""
                     },
@@ -330,5 +306,5 @@
     "hide_on_screen": "",
     "active": 1,
     "description": "",
-    "modified": 1580832341
+    "modified": 1580836855
 }

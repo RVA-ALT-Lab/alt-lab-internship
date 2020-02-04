@@ -39,6 +39,16 @@ defined( 'ABSPATH' ) || exit;
 	<div class="entry-content">
 
 		<?php the_content(); ?>
+		
+		<div class="intern-apply">
+			<button class="btn btn-primary btn-apply" type="button" data-toggle="collapse" data-target="#intern_apply" aria-expanded="false" aria-controls="intern_apply">
+			    Apply
+			  </button>
+			
+			<div class="collapse" id="intern_apply">
+			  <?php echo do_shortcode('[gravityform id="2" title="false" description="false"]');?>
+			</div>
+		</div>
 
 		<?php
 		wp_link_pages(

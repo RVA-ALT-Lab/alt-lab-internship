@@ -33,9 +33,9 @@ function internship_get_location(){
         $city = $location['city'];
         $state = $location['state'];
         $zip = $location['zip_code'];
-        return $street_one . ', ' . $city . ' ' . $state . ' ' . $zip;
+        return '<a target="_blank" href="https://www.google.com/maps/place/'. $street_one . '+,' . $city . '+,' . $state . '+' . $zip .'">'. $street_one . ', ' . $city . ' ' . $state . ' ' . $zip . '</a>';
     }
-    
+    //1200+Pennsylvania+Ave+SE,+Washington,+DC+20003
 }
 
 function internship_get_dates(){
