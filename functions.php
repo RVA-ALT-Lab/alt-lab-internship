@@ -62,28 +62,27 @@ function internship_update_post_content( $entry, $form ) {
     update_field('field_5e3447c544472', $compensation, $post_id);//compensation
     update_field('field_5e3989d11d4c6', $contact_email, $post_id);//compensation
 
+
+    //ADDRESS
     $street = rgar( $entry, '4.1' );
-    if (rgar( $entry, '4.2' )){
-    	$street = $street . ' ' . rgar( $entry, '4.2' );
-    }
+    $street_two =rgar( $entry, '4.2' );
     $city = rgar( $entry, '4.3' );
     $state = rgar( $entry, '4.4' );
     $zip = rgar( $entry, '4.5' );    
     $country = rgar( $entry, '4.6' ); 
-    $location = $street . ', ' . $city . ' ' . $zip . ', ' . $state . ' ' . $country;   
-
-    
-    $start_date = rgar( $entry, '8' );
-    $end_date = rgar( $entry, '9' );
-    write_log($location);
-    $address = array(
-    	'address' => $location,
+    $address_pieces = array(
+        'street_1'    =>   $street,
+        'street_2' =>   $street_two,
+        'city'	=>	$city,
+        'state'	=>	$state,
+        'zip_code'	=>	$zip,   
     );
-
-    $work = update_field('field_5e344524767ec', $address, $post_id);//location
-    write_log($work);
+    update_field( 'field_5e3992e1480ec', $address_pieces, $post_id );//ADDRESS
+    
     
     //DATES GROUP
+    $start_date = rgar( $entry, '8' );
+    $end_date = rgar( $entry, '9' );
     $dates = array(
         'start_date'    =>   $start_date,
         'end_date' =>   $end_date,
