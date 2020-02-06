@@ -109,3 +109,35 @@ i {
 	padding: 10px;
 	border-radius: 7px;
 }
+
+.review-list {
+	list-style-type: none;
+	margin-left: 0;
+	padding-left: 0;
+}
+
+.review-list li {
+	margin-top: 15px;
+	border-top: 1px solid $light-blue;
+	padding: 15px 0 10px 0;
+}
+
+.review-form, .review-list {
+	margin-top: 20px;
+	margin-bottom: 30px;
+}
+
+.review-date {
+	font-size: .7em;
+	text-align: right;
+	position: absolute;
+	right: 14px;
+	padding-top: 7px;
+}
+
+#intern_apply .gfield_label, #gform_3 .gfield_label{
+	color: $primary;
+	font-family: 'Open Sans Condensed',sans-serif;
+	font-size: 1.3em;
+	margin-top: 15px;
+}

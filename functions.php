@@ -114,13 +114,14 @@ function internship_get_reviews(){
 		foreach ($entries as $key => $entry) {
 			$rating = $entry[3];
 			$comment = $entry[4];
+			$date = date_format(new DateTime($entry["date_created"]), 'Y-m-d');
 		    array_push($all_ratings, $rating);	
 
 			
-			$html .= '<li>' . star_maker($rating) . '<div class="comment">' . $comment .'</div></li>';
+			$html .= '<li>' . star_maker($rating) . '<span class="review-date">' . $date . '</span><div class="comment">' . $comment .'</div></li>';
 		}
 		$average = array_sum($all_ratings) / count($all_ratings);
-		return round($average) . ' average rating <ul>' . $html . '</ul>';
+		return 'Average rating: ' . round($average) . ' <ul class="review-list">' . $html . '</ul>';
 		
 	} else {
 		return 'No reviews of this internship yet.';
