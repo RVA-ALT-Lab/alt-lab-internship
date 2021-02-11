@@ -47,7 +47,7 @@ defined( 'ABSPATH' ) || exit;
 			
 			<div class="collapse" id="intern_apply">				
 			  <?php 
-			  	$gform_text = '[gravityform id="2" title="false" description="false" field_values="company_email=' . internship_get_company_email() . '"]';
+			  	$gform_text = '[gravityform id="1" title="false" description="false" field_values="company_email=' . internship_get_company_email() . '"]';
 			  	echo do_shortcode($gform_text);?>
 			</div>
 		</div>
@@ -62,7 +62,7 @@ defined( 'ABSPATH' ) || exit;
 					</div>
 					<div class="review-form col-md-12">
 						<h2>Submit a Review</h2>
-						<?php echo do_shortcode('[gravityform id="3" title="false" description="false"]'); ?>
+						<?php echo do_shortcode('[gravityform id="4" title="false" description="false"]'); ?>
 					</div>
 				</div>
 			</div>

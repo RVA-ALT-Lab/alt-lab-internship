@@ -49,7 +49,7 @@ if ( ! function_exists('write_log')) {
 
 //GRAVITY FORMS PIECES
 
-add_action( 'gform_after_submission_1', 'internship_update_post_content', 10, 2 );
+add_action( 'gform_after_submission_3', 'internship_update_post_content', 10, 2 ); //runs after form with specific ID (3 in this case) is submitted
 
 function internship_update_post_content( $entry, $form ) {
     //getting post
@@ -60,7 +60,7 @@ function internship_update_post_content( $entry, $form ) {
 
     update_field('field_5e34451b767eb', $company, $post_id);//company name
     update_field('field_5e3447c544472', $compensation, $post_id);//compensation
-    update_field('field_5e3989d11d4c6', $contact_email, $post_id);//compensation
+    update_field('field_5e3989d11d4c6', $contact_email, $post_id);//email
 
 
     //ADDRESS
@@ -102,12 +102,12 @@ function internship_get_reviews(){
 	    'status'        => 'active',
 	    'field_filters' => array(
 	        array(
-	            'key'   => '2',
+	            'key'   => '2', // This is the field ID (psot ID) of the form 
 	            'value' => $post->ID,
 	        )
 	    )
 	);
-	$entries = GFAPI::get_entries( 3, $search_criteria );
+	$entries = GFAPI::get_entries( 4, $search_criteria ); //This is the GF form ID for the rating
 	if ($entries){
 		$html = '';
 		$all_ratings = array();
