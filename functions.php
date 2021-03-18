@@ -207,7 +207,7 @@ function make_dated_posts_draft() {
 	// $oldDateString = $ymdFormat;
 	// var_dump($oldDateString);
 	$newDateString = DateTime::createFromFormat('Ymd', $ymdFormat);
-	$newFormat = $newDateString->format('Y-m-d');
+	$newFormat = $newDateString->format('m-d-Y');
 	// var_dump($newFormat);
 	return $newFormat;
  }

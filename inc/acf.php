@@ -82,14 +82,14 @@ function internship_get_requirements(){
 
 function internship_get_credit(){
     $credit = get_field('for_credit_or_not');
-    return ' and ' . $credit;
+    return ' * ' . $credit;
 }
 
 function switch_ymd_startdate_format($fixYmdStart) {
 	// $oldDateString = $ymdFormat;
 	// var_dump($oldDateString);
 	$newYmdStartString = DateTime::createFromFormat('Ymd', $fixYmdStart);
-	$newDashStart = $newYmdStartString->format('Y-m-d');
+	$newDashStart = $newYmdStartString->format('m-d-Y');
 	// var_dump($newFormat);
 	return $newDashStart;
  }
@@ -98,7 +98,7 @@ function switch_ymd_startdate_format($fixYmdStart) {
 	// $oldDateString = $ymdFormat;
 	// var_dump($oldDateString);
 	$newYmdEndString = DateTime::createFromFormat('Ymd', $fixYmdEnd);
-	$newDashEnd = $newYmdEndString->format('Y-m-d');
+	$newDashEnd = $newYmdEndString->format('m-d-Y');
 	// var_dump($newFormat);
 	return $newDashEnd;
  }
