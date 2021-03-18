@@ -114,13 +114,14 @@ function create_shortcode_internship_post_type(){
 	);
 	$query = new WP_Query($args);
 	if($query->have_posts()) :
+		$result = '';
 			while($query->have_posts()) :
 					$query->the_post() ;
-					$ymdFormat = get_field( "start_date", $post_id);
+					
+					$ymdFormat = get_field( "start_date" ); // , $post_id
 					// var_dump($ymdFormat);
 					$newFormat = switch_date_format($ymdFormat);
 					
-			
 			$result .= '<div class="intern-list">';
 			$result .= '<div class="row"><div class="job-title col-md-4"><strong><a href="' . get_permalink() .'">' . get_the_title() . '</a></strong></div><div class="job-title col-md-4">' . get_field( "company_name") . '</div><div class="job-title col-md-4">' . $newFormat . '</div></div>'; 
 			$result .= '</div>';
