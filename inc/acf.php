@@ -43,14 +43,65 @@ function internship_get_location(){
     //1200+Pennsylvania+Ave+SE,+Washington,+DC+20003
 }
 
-function internship_get_dates(){
-    $dates = get_field('offering_dates');
-    if( $dates ) {
-        $start = $dates['start_date'];
-        $end = $dates['end_date'];        
-        return $start . ' - ' . $end;
-    }
+// function internship_get_dates(){
+//     $dates = get_field('offering_dates');
+//     if( $dates ) {
+//         $start = $dates['start_date'];
+//         $end = $dates['end_date'];        
+//         return $start . ' until ' . $end;
+//     }
+// }
+
+
+function internship_get_start_date(){
+    // $start_date = get_field('start_date');
+    $fixYmdStart = get_field( 'start_date' );
+    // var_dump($fixYmdFormat);
+    $newDashStart = switch_ymd_startdate_format($fixYmdStart);
+    return $newDashStart . ' thru ';
 }
+
+function internship_get_end_date(){
+    // $end_date = get_field('end_date');
+    $fixYmdEnd = get_field( 'end_date' );
+    // var_dump($fixYmdEnd);
+    $newDashEnd = switch_ymd_enddate_format($fixYmdEnd);
+    return $newDashEnd;
+    // return $end_date;
+}
+
+function internship_get_job_description(){
+    $job = get_field('job_description');
+    return $job;
+}
+
+function internship_get_requirements(){
+    $requirements = get_field('submission_requirements');
+    return $requirements;
+}
+
+function internship_get_credit(){
+    $credit = get_field('for_credit_or_not');
+    return ' and ' . $credit;
+}
+
+function switch_ymd_startdate_format($fixYmdStart) {
+	// $oldDateString = $ymdFormat;
+	// var_dump($oldDateString);
+	$newYmdStartString = DateTime::createFromFormat('Ymd', $fixYmdStart);
+	$newDashStart = $newYmdStartString->format('Y-m-d');
+	// var_dump($newFormat);
+	return $newDashStart;
+ }
+
+ function switch_ymd_enddate_format($fixYmdEnd) {
+	// $oldDateString = $ymdFormat;
+	// var_dump($oldDateString);
+	$newYmdEndString = DateTime::createFromFormat('Ymd', $fixYmdEnd);
+	$newDashEnd = $newYmdEndString->format('Y-m-d');
+	// var_dump($newFormat);
+	return $newDashEnd;
+ }
 
 
  add_filter('acf/settings/save_json', 'internship_acf_json_save_point');

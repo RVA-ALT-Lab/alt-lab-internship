@@ -57,10 +57,20 @@ function internship_update_post_content( $entry, $form ) {
     $company = rgar( $entry, '1' );
     $compensation = rgar( $entry, '7' );
     $contact_email = rgar($entry, '2');
+	$credit_or_not = rgar($entry, '11');
+	$job_description = rgar($entry, '12');
+	$submission_requirements = rgar($entry, '13');
+	$start_date = rgar($entry, '8');
+	$end_date = rgar($entry, '9');
 
     update_field('field_5e34451b767eb', $company, $post_id);//company name
     update_field('field_5e3447c544472', $compensation, $post_id);//compensation
     update_field('field_5e3989d11d4c6', $contact_email, $post_id);//email
+	update_field('field_604655142ece8', $credit_or_not, $post_id);//credit
+	update_field('field_6046430cbc137', $job_description, $post_id);//job descr
+	update_field('field_60464339f745d', $submission_requirements, $post_id);//requirements
+	update_field('field_5e344550767ee', $start_date, $post_id);//start date
+	update_field('field_5e344567767ef', $end_date, $post_id);//end date
 
 
     //ADDRESS
@@ -81,18 +91,47 @@ function internship_update_post_content( $entry, $form ) {
     
     
     //DATES GROUP
-    $start_date = rgar( $entry, '8' );
-    $end_date = rgar( $entry, '9' );
-    $dates = array(
-        'start_date'    =>   $start_date,
-        'end_date' =>   $end_date,
-    );
-    update_field( 'field_5e344533767ed', $dates, $post_id );//start and end date group
+    // $start_date = rgar( $entry, '8' );
+    // $end_date = rgar( $entry, '9' );
+    // $dates = array(
+    //     'start_date'    =>   $start_date,
+    //     'end_date' =>   $end_date,
+    // );
+    // update_field( 'field_5e344533767ed', $dates, $post_id );//start and end date group
 
-    $i = wp_update_post( $post_id );
+    // $i = wp_update_post( $post_id );	
  
 }
 
+//Shortcode for displaying custom post and field info
+function create_shortcode_internship_post_type(){
+	make_dated_posts_draft();
+	$args = array(
+		'post_type'      => 'internship',
+		'posts_per_page' => -1,
+		'numberposts'    => -1,
+		'publish_status' => 'publish',
+	);
+	$query = new WP_Query($args);
+	if($query->have_posts()) :
+			while($query->have_posts()) :
+					$query->the_post() ;
+					$ymdFormat = get_field( "start_date", $post_id);
+					// var_dump($ymdFormat);
+					$newFormat = switch_date_format($ymdFormat);
+					
+			
+			$result .= '<div class="intern-list">';
+			$result .= '<div class="row"><div class="job-title col-md-4"><strong><a href="' . get_permalink() .'">' . get_the_title() . '</a></strong></div><div class="job-title col-md-4">' . get_field( "company_name") . '</div><div class="job-title col-md-4">' . $newFormat . '</div></div>'; 
+			$result .= '</div>';
+
+			endwhile;
+			wp_reset_postdata();
+	endif;
+	return $result;
+}
+
+add_shortcode( 'internship-list', 'create_shortcode_internship_post_type' );
 
 //internship reviews
 
@@ -144,4 +183,32 @@ function star_maker($number){
 	}
 }
 
+//Check date to see if Internship Post should show
+function make_dated_posts_draft() {
+	$the_query = get_posts( 'post_type=internship' );	
+	foreach($the_query as $single_post) {
+		$id = $single_post->ID;
+		$ad_close_date = get_field('start_date', $id );
+		if($ad_close_date !='') {
+			$today = date("Ymd");
+			// var_dump($today);
+			// var_dump($ad_close_date);
+			if(new DateTime($ad_close_date) < new DateTime($today)) {
+				$update_post = array(
+				'ID' 			=> $id,
+				'post_status'	=>	'draft',
+				'post_type'	=>	'internship' );
+				wp_update_post($update_post);
+			}	
+		}
+	}
+}
+ function switch_date_format($ymdFormat) {
+	// $oldDateString = $ymdFormat;
+	// var_dump($oldDateString);
+	$newDateString = DateTime::createFromFormat('Ymd', $ymdFormat);
+	$newFormat = $newDateString->format('Y-m-d');
+	// var_dump($newFormat);
+	return $newFormat;
+ }
 	

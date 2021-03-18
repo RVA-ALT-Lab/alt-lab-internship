@@ -22,6 +22,40 @@
             "maxlength": ""
         },
         {
+            "key": "field_5e344550767ee",
+            "label": "Start Date",
+            "name": "start_date",
+            "type": "date_picker",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "display_format": "Y-m-d",
+            "return_format": "Ymd",
+            "first_day": 1
+        },
+        {
+            "key": "field_5e344567767ef",
+            "label": "End Date",
+            "name": "end_date",
+            "type": "date_picker",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "display_format": "Y-m-d",
+            "return_format": "Ymd",
+            "first_day": 1
+        },
+        {
             "key": "field_5e344533767ed",
             "label": "Offering Dates",
             "name": "offering_dates",
@@ -35,42 +69,7 @@
                 "id": ""
             },
             "layout": "block",
-            "sub_fields": [
-                {
-                    "key": "field_5e344550767ee",
-                    "label": "Start Date",
-                    "name": "start_date",
-                    "type": "date_picker",
-                    "instructions": "",
-                    "required": 0,
-                    "conditional_logic": 0,
-                    "wrapper": {
-                        "width": "",
-                        "class": "",
-                        "id": ""
-                    },
-                    "display_format": "F j, Y",
-                    "return_format": "F j, Y",
-                    "first_day": 1
-                },
-                {
-                    "key": "field_5e344567767ef",
-                    "label": "End Date",
-                    "name": "end_date",
-                    "type": "date_picker",
-                    "instructions": "",
-                    "required": 0,
-                    "conditional_logic": 0,
-                    "wrapper": {
-                        "width": "",
-                        "class": "",
-                        "id": ""
-                    },
-                    "display_format": "F j, Y",
-                    "return_format": "F j, Y",
-                    "first_day": 1
-                }
-            ]
+            "sub_fields": []
         },
         {
             "key": "field_5e3447c544472",
@@ -87,7 +86,8 @@
             },
             "choices": {
                 "Paid": "Paid",
-                "Unpaid": "Unpaid"
+                "Paid and for Credit": "Paid and for Credit",
+                "Unpaid for Credit": "Unpaid for Credit"
             },
             "allow_null": 0,
             "other_choice": 0,
@@ -287,6 +287,68 @@
                     "maxlength": ""
                 }
             ]
+        },
+        {
+            "key": "field_604655142ece8",
+            "label": "For Credit or Not",
+            "name": "for_credit_or_not",
+            "type": "radio",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "for Course Credit": "for Course Credit",
+                "not for Course Credit": "not for Course Credit"
+            },
+            "allow_null": 0,
+            "other_choice": 0,
+            "default_value": "",
+            "layout": "vertical",
+            "return_format": "value",
+            "save_other_choice": 0
+        },
+        {
+            "key": "field_6046430cbc137",
+            "label": "Job Description",
+            "name": "job_description",
+            "type": "textarea",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "maxlength": "",
+            "rows": 4,
+            "new_lines": ""
+        },
+        {
+            "key": "field_60464339f745d",
+            "label": "Submission Requirements",
+            "name": "submission_requirements",
+            "type": "textarea",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "maxlength": "",
+            "rows": 4,
+            "new_lines": ""
         }
     ],
     "location": [
@@ -306,5 +368,5 @@
     "hide_on_screen": "",
     "active": 1,
     "description": "",
-    "modified": 1580836855
+    "modified": 1616085006
 }

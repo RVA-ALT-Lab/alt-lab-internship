@@ -20,14 +20,20 @@ defined( 'ABSPATH' ) || exit;
 					<i class="fa fa-building-o" aria-hidden="true"></i><span class="internship-label">Company:</span><span class="internship-value"><?php echo internship_get_company();?></span>
 				</div>
 				<div class="internship-chunk">
-					<i class="fa fa-usd" aria-hidden="true"></i><span class="internship-label">Salary:</span><span class="internship-value"><?php echo internship_get_compensation();?></span>				
+					<i class="fa fa-usd" aria-hidden="true"></i><span class="internship-label">Salary:</span><span class="internship-value"><?php echo internship_get_compensation();?> <?php echo internship_get_credit();?></span>
 				</div>
-			</div>
+			</div>	
 			<div class="location internship-meta-single">
-				<i class="fa fa-calendar" aria-hidden="true"></i><span class="internship-label">Dates:</span><span class="internship-value"><?php echo internship_get_dates();?></span>
+				<i class="fa fa-calendar" aria-hidden="true"></i><span class="internship-label">Dates:</span><span class="internship-value"><?php echo internship_get_start_date();?><?php echo internship_get_end_date();?></span>
 			</div>	
 			<div class="location internship-meta-single">
 				<i class="fa fa-map-marker" aria-hidden="true"></i><span class="internship-label">Location:</span><span class="internship-value"><?php  echo internship_get_location();?></span>
+			</div>
+			<div class="location internship-meta-single">
+				<i class="fa fa-list-alt" aria-hidden="true"></i><span class="internship-label">Job Description:</span><span class="internship-value"><div class="intern-box"><?php  echo internship_get_job_description();?></span></div>
+			</div>
+			<div class="location internship-meta-single">
+				<i class="fa fa-check" aria-hidden="true"></i><span class="internship-label">Application Submission Requirements:</span><span class="internship-value"><div class="intern-box"><?php  echo internship_get_requirements();?></span></div>
 			</div>
 
 		</div><!-- .entry-meta -->
@@ -41,11 +47,11 @@ defined( 'ABSPATH' ) || exit;
 		<?php the_content(); ?>
 		
 		<div class="intern-apply">
-			<button class="btn btn-primary btn-apply" type="button" data-toggle="collapse" data-target="#intern_apply" aria-expanded="false" aria-controls="intern_apply">
-			    Apply
+			<button class="btn btn-primary btn-apply" type="button" data-toggle="collapse" data-target="#intern_apply" aria-expanded="true" aria-controls="intern_apply">
+			    <!-- <h2 class="entry-title"> -->Application Form<!-- </h2> -->
 			  </button>
 			
-			<div class="collapse" id="intern_apply">				
+			<div class="collapse show" id="intern_apply">				
 			  <?php 
 			  	$gform_text = '[gravityform id="1" title="false" description="false" field_values="company_email=' . internship_get_company_email() . '"]';
 			  	echo do_shortcode($gform_text);?>
